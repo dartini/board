@@ -8,11 +8,15 @@ import {CoreModule} from './module/core/core.module';
 import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
 import {LoginComponent} from './component/login/login.component';
+import {TestComponent} from './test.component';
+import {AuthGuard} from './auth.guard';
+import {NgxTsSerializerModule} from 'ngx-ts-serializer';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    TestComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -20,9 +24,12 @@ import {LoginComponent} from './component/login/login.component';
     AngularFireAuthModule,
     AppRoutingModule,
     BrowserModule,
-    CoreModule
+    CoreModule,
+    NgxTsSerializerModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
