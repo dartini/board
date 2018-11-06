@@ -18,10 +18,11 @@ export class AuthGuard implements CanActivate {
         }
 
         return this.authService.authenticateWithFacebook().pipe(
-          catchError(() => false),
+          catchError((err) => of(false)),
           map(() => true)
         );
-      })
+      }),
+      tap((t) => console.log(t))
     );
   }
 }

@@ -1,6 +1,8 @@
 import {JsonProperty} from 'ts-serializer-core';
 export class User {
 
+  public id: string;
+
   @JsonProperty('displayName')
   public displayName: string;
 

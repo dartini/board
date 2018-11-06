@@ -46,7 +46,7 @@ export class UserService {
 
   public findById(id: string): Observable<User> {
     return this.db
-      .object('/users/' + id)
+      .doc('/users/' + id)
       .snapshotChanges()
       .pipe(
         tap((os: any) => {
@@ -72,16 +72,16 @@ export class UserService {
           }
 
           const infos = userInformation.providerData[0];
-          user.username = infos.email;
+          user.email = infos.email;
           user.displayName = infos.displayName;
-          user.photoURL = infos.photoURL;
+          user.photoUrl = infos.photoURL;
 
-          this.db.object('/users/' + userInformation.providerData[0].uid).set(this.serializer.serialize(user));
+          this.db.doc('/users/' + userInformation.providerData[0].uid).set(this.serializer.serialize(user));
           this.firstUpdate = true;
         }),
         catchError((err: Error) => {
           const user: User = <User>userInformation.providerData[0];
-          this.db.object('/users/' + userInformation.providerData[0].uid).set(this.serializer.serialize(user));
+          this.db.doc('/users/' + userInformation.providerData[0].uid).set(this.serializer.serialize(user));
 
           user.id = userInformation.providerData[0].uid;
 
