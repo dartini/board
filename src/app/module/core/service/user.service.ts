@@ -3,8 +3,8 @@ import {Observable} from 'rxjs/index';
 import {AuthService} from './auth.service';
 import {AngularFirestore} from 'angularfire2/firestore';
 import {catchError, map, mergeMap, share, tap} from 'rxjs/internal/operators';
-import {User} from '../model/user';
 import {NgxTsSerializerService} from 'ngx-ts-serializer';
+import {User} from '../model/user.model';
 
 @Injectable()
 export class UserService {
