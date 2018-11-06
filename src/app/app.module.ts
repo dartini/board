@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {CoreModule} from './module/core/core.module';
 import {environment} from '../environments/environment';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import {environment} from '../environments/environment';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AppRoutingModule,
     BrowserModule,
     CoreModule
   ],
