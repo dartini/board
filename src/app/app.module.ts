@@ -7,10 +7,12 @@ import {AppComponent} from './app.component';
 import {CoreModule} from './module/core/core.module';
 import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
+import {LoginComponent} from './component/login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
