@@ -1,92 +1,41 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/index';
-import {AuthService} from './auth.service';
-import {AngularFirestore} from 'angularfire2/firestore';
-import {catchError, map, mergeMap, share, tap} from 'rxjs/internal/operators';
-import {NgxTsSerializerService} from 'ngx-ts-serializer';
+import {AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
 import {User} from '../model/user.model';
+import {AuthService} from './auth.service';
+import {map, mergeMap, tap} from 'rxjs/internal/operators';
+import {NgxTsDeserializerService} from 'ngx-ts-serializer';
+import * as firebase from 'firebase';
+import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
+import {Action} from 'rxjs/internal/scheduler/Action';
 
 @Injectable()
 export class UserService {
 
-  private user: Observable<User>;
-
-  private firstUpdate: boolean = false;
+  private users: AngularFirestoreCollection<User>;
 
   public constructor(
     private authService: AuthService,
     private db: AngularFirestore,
-    private serializer: NgxTsSerializerService) {
+    private deserializer: NgxTsDeserializerService) {
+    this.users = this.db.collection<User>('users');
   }
 
   public findUserAccount(): Observable<User> {
-    console.log(1);
-    if (this.user) {
-      return this.user;
-    }
-
-    console.log(2);
-    this.user = this.authService.user.pipe(
-      tap((t) => console.log('coucou', t)),
-      mergeMap((user) => {
-        console.log(3);
-        if (user) {
-          return this.makeUser(user);
-        }
-
-        return this.authService.authenticateWithFacebook().pipe(
-          mergeMap((userInformations: any) => this.makeUser(userInformations))
-        );
-      }),
-      share()
+    return this.authService.user.pipe(
+      mergeMap((user: firebase.User) => this.findById(user.uid)),
+      tap((u) => console.log(u))
     );
-
-    return this.user;
   }
 
   public findById(id: string): Observable<User> {
-    return this.db
-      .doc('/users/' + id)
-      .snapshotChanges()
-      .pipe(
-        tap((os: any) => {
-          if (!os.key) {
-            throw Error('No user found');
-          }
-        }),
-        map((os: any) => {
-          const u: User = <User>os.payload.val();
-          u.id = os.payload.key;
+    return this.users.doc<User>(id).snapshotChanges().pipe(
+      map((snapshot: Action<DocumentSnapshot<User>>) => {
+        const user: User = this.deserializer.deserialize(User, snapshot.payload.data());
+        user.id = snapshot.payload.id;
 
-          return u;
-        })
-      );
-  }
-
-  private makeUser(userInformation: any): Observable<User> {
-    return this.findById(userInformation.providerData[0].uid)
-      .pipe(
-        tap((user: User) => {
-          if (this.firstUpdate) {
-            return;
-          }
-
-          const infos = userInformation.providerData[0];
-          user.email = infos.email;
-          user.displayName = infos.displayName;
-          user.photoUrl = infos.photoURL;
-
-          this.db.doc('/users/' + userInformation.providerData[0].uid).set(this.serializer.serialize(user));
-          this.firstUpdate = true;
-        }),
-        catchError((err: Error) => {
-          const user: User = <User>userInformation.providerData[0];
-          this.db.doc('/users/' + userInformation.providerData[0].uid).set(this.serializer.serialize(user));
-
-          user.id = userInformation.providerData[0].uid;
-
-          return this.user;
-        })
-      );
+        return user;
+      })
+    );
   }
 }

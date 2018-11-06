@@ -1,13 +1,27 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
-import { LoginComponent } from './component/login/login.component';
+import {LoginComponent} from './component/login/login.component';
 import {AuthGuard} from './auth.guard';
+import {TargetsComponent} from './component/targets/targets.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: '',
     canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'targets',
+        component: TargetsComponent
+      }
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: 'login'
   }
 ];
 
@@ -15,4 +29,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

@@ -1,22 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import {User} from '../../module/core/model/user.model';
-import {UserService} from '../../module/core/service/user.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AuthService} from '../../module/core/service/auth.service';
+import {Router} from '@angular/router';
+import {Subscription} from 'rxjs/index';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  public constructor(private userService: UserService) {
+  private fbSubscription: Subscription;
 
+  public errorInLogin: boolean = false;
+
+  public constructor(private authService: AuthService, private router: Router) {
   }
 
   public ngOnInit(): void {
-    console.log('connard');
-    this.userService.findUserAccount().subscribe(
-      (user: User) => console.log(user)
+    this.authService.authenticateWithFacebook().subscribe(
+      (isLogged: boolean) => this.router.navigate(['/', 'targets']),
+      () => this.errorInLogin = true
     );
+  }
+
+  public ngOnDestroy(): void {
+    if (this.fbSubscription) {
+      this.fbSubscription.unsubscribe();
+    }
   }
 }

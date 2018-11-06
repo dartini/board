@@ -1,8 +1,7 @@
-import {Observable, of} from 'rxjs/index';
+import {Observable} from 'rxjs/index';
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
 import {AuthService} from './module/core/service/auth.service';
-import {catchError, map, mergeMap, tap} from 'rxjs/internal/operators';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -11,18 +10,6 @@ export class AuthGuard implements CanActivate {
   }
 
   public canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.authService.user.pipe(
-      mergeMap((user) => {
-        if (user) {
-          return of(true);
-        }
-
-        return this.authService.authenticateWithFacebook().pipe(
-          catchError((err) => of(false)),
-          map(() => true)
-        );
-      }),
-      tap((t) => console.log(t))
-    );
+    return this.authService.isLogged();
   }
 }
