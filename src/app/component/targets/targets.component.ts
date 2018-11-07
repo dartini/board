@@ -1,5 +1,5 @@
 import {User} from './../../module/core/model/user.model';
-import {mergeMap, tap} from 'rxjs/operators';
+import {mergeMap} from 'rxjs/operators';
 import {Target} from './../../module/core/model/target.model';
 import {Observable} from 'rxjs';
 import {TargetService} from './../../module/core/service/target.service';
@@ -20,8 +20,7 @@ export class TargetsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.targets$ = this.userService.findUserAccount().pipe(
-      mergeMap((user: User) => this.targetService.findUserTargets(user)),
-      tap((t) => console.log(t))
+      mergeMap((user: User) => this.targetService.findUserTargets(user))
     );
   }
 }
