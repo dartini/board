@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../../module/core/service/auth.service';
 import {Router} from '@angular/router';
-import {Subscription} from 'rxjs/index';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.authService.authenticateWithFacebook().subscribe(
-      (isLogged: boolean) => this.router.navigate(['/', 'targets']),
+      () => this.router.navigate(['app', 'targets']),
       () => this.errorInLogin = true
     );
   }

@@ -2,6 +2,7 @@ import {JsonProperty} from 'ts-serializer-core';
 
 export class User {
 
+  @JsonProperty({name: 'uid', excludeToJson: true})
   public id: string;
 
   @JsonProperty('displayName')
@@ -10,6 +11,6 @@ export class User {
   @JsonProperty('email')
   public email: string;
 
-  @JsonProperty('photoUrl')
-  public photoUrl: string;
+  @JsonProperty('photoURL')
+  public photoURL: string;
 }
