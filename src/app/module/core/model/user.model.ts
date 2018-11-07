@@ -13,4 +13,7 @@ export class User {
 
   @JsonProperty('photoURL')
   public photoURL: string;
+
+  @JsonProperty('targets')
+  public targetsNames: string[];
 }

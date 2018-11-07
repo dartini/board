@@ -1,3 +1,7 @@
-<p>
-  targets works!
-</p>
+<div>
+  <ul>
+    <li *ngFor="let target of targets$ | async ">
+      {{ target.name}}
+    </li>
+  </ul>
+</div>

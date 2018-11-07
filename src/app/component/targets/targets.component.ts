@@ -1,3 +1,8 @@
+import {User} from './../../module/core/model/user.model';
+import {mergeMap, tap} from 'rxjs/operators';
+import {Target} from './../../module/core/model/target.model';
+import {Observable} from 'rxjs';
+import {TargetService} from './../../module/core/service/target.service';
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../module/core/service/user.service';
 
@@ -8,15 +13,15 @@ import {UserService} from '../../module/core/service/user.service';
 })
 export class TargetsComponent implements OnInit {
 
-  public constructor(private userService: UserService) {
+  public targets$: Observable<Target[]>;
+
+  public constructor(private userService: UserService, private targetService: TargetService) {
   }
 
   public ngOnInit(): void {
-    this.userService.findUserAccount().subscribe(
-      (t) => console.log(t)
-    );
-    this.userService.findById('tDzoR90yPiO5pRQLTBdM').subscribe(
-      (t) => console.log(t)
+    this.targets$ = this.userService.findUserAccount().pipe(
+      mergeMap((user: User) => this.targetService.findUserTargets(user)),
+      tap((t) => console.log(t))
     );
   }
 }

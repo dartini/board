@@ -1,3 +1,4 @@
+import {tap} from 'rxjs/internal/operators';
 import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, Action, DocumentSnapshot} from 'angularfire2/firestore';
 import {User} from '../model/user.model';
@@ -28,6 +29,7 @@ export class UserService {
           () => !!user,
           of(user),
           of(this.deserializer.deserialize(User, fbUser)).pipe(
+            tap((newUser: User) => newUser.targetsNames = []),
             mergeMap((newUser: User) => this.create(newUser).pipe(
               map(() => newUser)
             )))
