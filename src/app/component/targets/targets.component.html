@@ -1,7 +1,12 @@
-<div>
-  <ul>
-    <li *ngFor="let target of targets$ | async ">
-      {{ target.name}}
-    </li>
-  </ul>
+<div class="container">
+    <div class="d-flex justify-content-center">
+      <div class="col-auto">
+          Sélectionner votre cible
+          <ul>
+              <li *ngFor="let target of targets$ | async ">
+                {{ target.name}}
+              </li>
+          </ul>
+    </div>
+  </div>
 </div>
