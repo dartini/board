@@ -11,12 +11,14 @@ import {LoginComponent} from './component/login/login.component';
 import {AuthGuard} from './auth.guard';
 import {NgxTsSerializerModule} from 'ngx-ts-serializer';
 import {TargetsComponent} from './component/targets/targets.component';
+import { GamesComponent } from './component/games/games.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    TargetsComponent
+    TargetsComponent,
+    GamesComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

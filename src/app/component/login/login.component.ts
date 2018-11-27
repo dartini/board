@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.authService.authenticateWithFacebook().subscribe(
+    this.fbSubscription = this.authService.authenticateWithFacebook().subscribe(
       () => this.router.navigate(['app', 'targets']),
       () => this.errorInLogin = true
     );
