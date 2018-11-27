@@ -23,7 +23,7 @@ export class TargetsComponent  implements OnInit {
   public ngOnInit(): void {
     this.targets$ = this.userService.findUserAccount().pipe(
       mergeMap((user: User) => this.targetService.findUserTargets(user)),
-      tap((t) => t.length < 3 ? this.router.navigate(['app', 'games']) : null)
+      tap((t) => t.length < 3 ? this.router.navigate(['app', 'rules']) : null)
     );
   }
 }
