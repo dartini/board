@@ -1,3 +1,6 @@
+import {Rule} from './../../module/core/model/rule.model';
+import {Observable} from 'rxjs';
+import {RuleService} from './../../module/core/service/rule.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RulesComponent implements OnInit {
 
-  public constructor() { }
+  public rules$: Observable<Rule[]>;
+
+  public constructor(private ruleService: RuleService) { }
 
   public ngOnInit() {
+    this.rules$ = this.ruleService.getAllRules();
   }
-
 }

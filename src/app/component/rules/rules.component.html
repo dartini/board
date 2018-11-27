@@ -1,1 +1,12 @@
-Choisi ton jeu enculé
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3 rule-list">
+      <ul class="list-group">
+        <li *ngFor="let rule of rules$ | async " class="list-group-item">{{rule.name}}</li>
+      </ul>
+    </div>
+    <div class="col-9 main">
+      Ceci est le jeu
+    </div>
+  </div>
+</div>

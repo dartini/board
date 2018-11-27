@@ -1,3 +1,4 @@
+import {RuleService} from './service/rule.service';
 import {TargetService} from './service/target.service';
 import {NgModule, Optional, SkipSelf} from '@angular/core';
 import {AuthService} from './service/auth.service';
@@ -7,7 +8,8 @@ import {UserService} from './service/user.service';
   providers: [
     AuthService,
     UserService,
-    TargetService
+    TargetService,
+    RuleService
   ]
 })
 export class CoreModule {
