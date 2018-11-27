@@ -1,12 +1,14 @@
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid h-100">
+  <div class="row h-100">
     <div class="col-3 rule-list">
-      <ul class="list-group">
-        <li *ngFor="let rule of rules$ | async " class="list-group-item">{{rule.name}}</li>
+      <ul>
+        <li *ngFor="let rule of rules$ | async ">
+          <a href="">{{rule.name}}</a>
+        </li>
       </ul>
     </div>
     <div class="col-9 main">
-      Ceci est le jeu
+      <h1>Sélectionnez un jeu</h1>
     </div>
   </div>
 </div>

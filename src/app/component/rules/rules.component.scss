@@ -1,12 +1,42 @@
-body{
-  height: 100%;
-  width: 100%;
-  max-height: 100%;
-  min-height: 100%;
-}
 .rule-list{
-
+  padding: 0;  
+  height: 100%;
+  background-color: rgb(247, 41, 185);
+  ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li{
+      padding: 0;
+      margin: 0;
+      a{
+        display: block;
+        text-decoration: none;
+        padding: 10px 10px 10px 74px;
+        font-size: 180%;
+        border-bottom: 1px dotted #ccc;
+        color: #333333;
+        font-style: italic;
+        background-image: url("../../../assets/images/dart.png");
+        background-repeat: no-repeat;
+        background-position: left;
+        transition:background-position 0.4s ease-in
+      }
+      a:hover{
+        background-color: #fff000;
+        background-position: right;
+      }
+    }
+  }
 }
 .main{
-  
+  background-color: #111;
+  h1{
+    color: #fff;
+    font-style: italic;
+    text-align: center;
+    padding: 10px;
+    font-size: 300%;
+    text-transform: uppercase;
+  }
 }
