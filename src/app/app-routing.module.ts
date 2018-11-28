@@ -15,12 +15,31 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'targets'
+      },
+      {
         path: 'targets',
         component: TargetsComponent
       },
       {
         path: 'rules',
         component: RulesComponent
+      },
+      {
+        path: 'games',
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: '501'
+          },
+          {
+            path: '501',
+            loadChildren: './module/five-hundred-one/five-hundred-one.module#FiveHundredOneModule'
+          }
+        ]
       }
     ]
   },

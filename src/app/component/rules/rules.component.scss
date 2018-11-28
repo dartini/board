@@ -40,3 +40,14 @@
     text-transform: uppercase;
   }
 }
+
+button {
+  border: outset whitesmoke 10px;
+  background-color: deeppink;
+  font-size: 60px;
+
+  &:active {
+    border-style: inset;
+    box-shadow: inset 10px 10px 61px -15px rgba(0,0,0,0.95);
+  }
+}
