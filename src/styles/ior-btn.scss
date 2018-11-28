@@ -10,9 +10,8 @@
 
   &:active {
     border-style: inset;
-    box-shadow: inset 10px 10px 61px -15px rgba(0, 0, 0, 0.95);
+    box-shadow: inset 10px 10px 61px -15px rgba(0, 0, 0, 0.95), 0 0 60px $primary;
     background-color: $primary;
-    box-shadow: 0 0 60px $primary;
     animation: none;
   }
 
