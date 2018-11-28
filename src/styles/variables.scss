@@ -1,4 +1,7 @@
-$primary: deeppink;
+$yellow: yellow;
+
+$primary: #ff00b2;
+$secondary: $yellow;
 
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";

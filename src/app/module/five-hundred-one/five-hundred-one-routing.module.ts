@@ -4,7 +4,7 @@ import {FiveHundredOneComponent} from './component/five-hundred-one/five-hundred
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':gameId',
     component: FiveHundredOneComponent,
   }
 ];

@@ -17,7 +17,7 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'targets'
+        redirectTo: 'games/501/LEUkdHQsKILpTC5jrK41'
       },
       {
         path: 'targets',

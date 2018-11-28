@@ -1,1 +1,10 @@
-connard
+<div class="d-flex w-100 justify-content-around" *ngIf="game$|async as game">
+  <div *ngFor="let player of game.players" class="d-flex flex-column">
+    <div class="bg-primary score">
+      501
+    </div>
+    <div class="bg-primary border-top border-secondary p-1">
+      <img [src]="player.photoURL" class="mr-1">{{ player.displayName }}
+    </div>
+  </div>
+</div>

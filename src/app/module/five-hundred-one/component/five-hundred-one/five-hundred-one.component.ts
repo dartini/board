@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {filter, map, mergeMap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {Game} from '../../../core/model/game.model';
+import {GameService} from '../../../core/service/game.service';
 
 @Component({
   selector: 'app-five-hundred-one',
@@ -7,9 +12,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FiveHundredOneComponent implements OnInit {
 
-  constructor() { }
+  public game$: Observable<Game>;
 
-  ngOnInit() {
+  public constructor(private activatedRoute: ActivatedRoute, private gameService: GameService) {
   }
 
+  public ngOnInit() {
+    this.game$ = this.activatedRoute.params.pipe(
+      filter((params: Params) => !!params['gameId']),
+      map((params: Params) => params['gameId']),
+      mergeMap((gameId: string) => this.gameService.findById(gameId))
+    );
+  }
 }
