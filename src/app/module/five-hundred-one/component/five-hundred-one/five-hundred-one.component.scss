@@ -1,3 +1,16 @@
-.score {
-  font-size: 100px;
+@import "../../../../../styles/variables";
+
+$border-width: 5px;
+
+.player {
+  border: solid $border-width $secondary;
+  color: $white;
+
+  .score {
+    font-size: 100px;
+  }
+
+  .avatar {
+    // border-top: solid $border-width $secondary;
+  }
 }

@@ -1,13 +1,15 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FiveHundredOneComponent } from './component/five-hundred-one/five-hundred-one.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FiveHundredOneComponent} from './component/five-hundred-one/five-hundred-one.component';
 import {FiveHundredOneRoutingModule} from './five-hundred-one-routing.module';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FiveHundredOneRoutingModule
+    FiveHundredOneRoutingModule,
+    SharedModule
   ],
   declarations: [FiveHundredOneComponent]
 })
-export class FiveHundredOneModule { }
+export class FiveHundredOneModule {
+}

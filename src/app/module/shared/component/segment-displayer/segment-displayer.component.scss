@@ -1,0 +1,28 @@
+$color: #34FF0D;
+
+@font-face {
+  font-family: 'Lcd';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/assets/fonts/lcd_3.ttf') format('truetype');
+}
+
+.segment {
+  font-family: Lcd !important;
+  position: relative;
+  margin: 0 auto;
+  background-color: transparent;
+  color: $color;
+  font-size: 150px;
+  opacity: .8;
+  text-shadow: 3px 3px 3px rgba($color, .2);
+
+  .shadow {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    opacity: .1;
+  }
+}
+

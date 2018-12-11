@@ -1,0 +1,28 @@
+$margin: 2%;
+$segment-width: 5%;
+
+
+.digit {
+  position: relative;
+  height: 100px;
+
+  .segment {
+    position: absolute;
+
+    &:nth-child(1) {
+      background-color: red;
+      top: 0;
+      left: $margin;
+      right: $margin;
+      height: $segment-width;
+    }
+
+    &:nth-child(2) {
+      background-color: blue;
+      top: $margin;
+      height: calc((100% - #{$margin} * 3) / 2);
+      left: 0;
+      width: $segment-width;
+    }
+  }
+}
