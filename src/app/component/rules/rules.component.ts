@@ -1,3 +1,4 @@
+import {GameConfiguratorService} from './../../module/core/service/gameconfigurator.service';
 import {Router} from '@angular/router';
 import {Rule} from './../../module/core/model/rule.model';
 import {Observable} from 'rxjs';
@@ -13,13 +14,17 @@ export class RulesComponent implements OnInit {
 
   public rules$: Observable<Rule[]>;
 
-  public constructor(private ruleService: RuleService, private router: Router) { }
+  public constructor(private ruleService: RuleService,
+                     private gameConfigurationService: GameConfiguratorService,
+                     private router: Router) { }
 
   public ngOnInit() {
     this.rules$ = this.ruleService.getAllRules();
   }
 
-  public selectRule() {
+  public selectRule(event, rule: Rule) {
+    console.log(rule);
+    this.gameConfigurationService.setRule(rule);
     this.router.navigate(['/app/modechooser']);
   }
 }

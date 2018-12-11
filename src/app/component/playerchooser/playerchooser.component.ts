@@ -1,3 +1,5 @@
+import {GameConfiguration} from './../../module/core/model/gameconfiguration.model';
+import {GameConfiguratorService} from './../../module/core/service/gameconfigurator.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayerchooserComponent implements OnInit {
 
-  constructor() { }
+  public gameConfiguration: GameConfiguration;
 
-  ngOnInit() {
+  public constructor(private gameConfigurationService: GameConfiguratorService) {  }
+
+  public ngOnInit() {
+    this.gameConfiguration = this.gameConfigurationService.getConfiguration();
   }
 
 }

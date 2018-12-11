@@ -1,3 +1,5 @@
+import {GameConfiguratorService} from './../../module/core/service/gameconfigurator.service';
+import {Router} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModechooserComponent implements OnInit {
 
-  constructor() { }
+  public constructor(private gameConfigurationService: GameConfiguratorService, private router: Router) { }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
+  public setGameMode(event, isTeam: boolean) {
+    this.gameConfigurationService.setIsTeamGame(isTeam);
+    this.router.navigate(['/app/playerchooser']);
+  }
 }
