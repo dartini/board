@@ -23,7 +23,6 @@ export class RulesComponent implements OnInit {
   }
 
   public selectRule(event, rule: Rule) {
-    console.log(rule);
     this.gameConfigurationService.setRule(rule);
     this.router.navigate(['/app/modechooser']);
   }

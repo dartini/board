@@ -1,6 +1,6 @@
 <div class="d-flex flex-column h-100">
     <h1>Choose players</h1>
-    <div>
-        {{gameConfiguration.rule.name}}
+    <div class="d-flex justify-content-around align-items-center flex-column h-100 flex-grow-1">
+      <div *ngFor="let user of users$ | async " class="player-preview py-3 px-5">{{user.displayName}}</div>
     </div>
   </div>

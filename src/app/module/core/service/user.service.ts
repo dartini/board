@@ -1,6 +1,6 @@
 import {tap} from 'rxjs/internal/operators';
 import {Injectable} from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection, Action, DocumentSnapshot} from 'angularfire2/firestore';
+import {AngularFirestore, AngularFirestoreCollection, Action, DocumentSnapshot, DocumentChangeAction} from 'angularfire2/firestore';
 import {User} from '../model/user.model';
 import {AuthService} from './auth.service';
 import {NgxTsDeserializerService, NgxTsSerializerService} from 'ngx-ts-serializer';
@@ -51,6 +51,12 @@ export class UserService {
 
         return user;
       })
+    );
+  }
+
+  public getAll(): Observable<User[]> {
+    return this.users.snapshotChanges().pipe(
+      map((users: DocumentChangeAction<any>[]) => users.map(a => this.deserializer.deserialize(User, a.payload.doc.data())))
     );
   }
 
