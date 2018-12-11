@@ -17,6 +17,15 @@ html, body {
   background-color: #111;
 }
 
+h1 {
+  color: $white;
+  font-style: italic;
+  text-align: center;
+  padding: 10px;
+  font-size: 300%;
+  text-transform: uppercase;
+}
+
 button {
   cursor: pointer;
 }
