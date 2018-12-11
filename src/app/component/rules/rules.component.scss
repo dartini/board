@@ -1,42 +1,5 @@
 @import "../../../styles/variables";
 
-.rule-list {
-  padding: 0;
-  height: 100%;
-  background-color: $primary;
-
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    li {
-      padding: 0;
-      margin: 0;
-
-      a {
-        display: block;
-        text-decoration: none;
-        padding: 10px 10px 10px 74px;
-        font-size: 180%;
-        border-bottom: 1px dotted #ccc;
-        color: #333333;
-        font-style: italic;
-        background-image: url("../../../assets/images/dart.png");
-        background-repeat: no-repeat;
-        background-position: left;
-
-        &:hover {
-          background-color: $secondary;
-          background-position: right;
-        }
-      }
-    }
-  }
-}
-
-.main {
-
   h1 {
     color: $white;
     font-style: italic;
@@ -45,4 +8,3 @@
     font-size: 300%;
     text-transform: uppercase;
   }
-}
