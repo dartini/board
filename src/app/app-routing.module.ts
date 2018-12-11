@@ -1,3 +1,5 @@
+import {PlayerchooserComponent} from './component/playerchooser/playerchooser.component';
+import {ModechooserComponent} from './component/modechooser/modechooser.component';
 import {RulesComponent} from './component/rules/rules.component';
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
@@ -26,6 +28,14 @@ const routes: Routes = [
       {
         path: 'rules',
         component: RulesComponent
+      },
+      {
+        path: 'modechooser',
+        component: ModechooserComponent
+      },
+      {
+        path: 'playerchooser',
+        component: PlayerchooserComponent
       },
       {
         path: 'games',
